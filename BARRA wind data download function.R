@@ -116,8 +116,8 @@ download_process_wind_data <- function(
     )
   
   # Base URLs for wind data
-  u_url_base <- "https://dapds00.nci.org.au/thredds/dodsC/ob53/output/reanalysis/AUS-11/BOM/ERA5/historical/hres/BARRA-R2/v1/day/uas/latest/uas_AUS-11_ERA5_historical_hres_BOM_BARRA-R2_v1_day_"
-  v_url_base <- "https://dapds00.nci.org.au/thredds/dodsC/ob53/output/reanalysis/AUS-11/BOM/ERA5/historical/hres/BARRA-R2/v1/day/vas/latest/vas_AUS-11_ERA5_historical_hres_BOM_BARRA-R2_v1_day_"
+  u_url_base <- "https://thredds.nci.org.au/thredds/dodsC/ob53/output/reanalysis/AUS-11/BOM/ERA5/historical/hres/BARRA-R2/v1/day/uas/latest/uas_AUS-11_ERA5_historical_hres_BOM_BARRA-R2_v1_day_"
+  v_url_base <- "https://thredds.nci.org.au/thredds/dodsC/ob53/output/reanalysis/AUS-11/BOM/ERA5/historical/hres/BARRA-R2/v1/day/vas/latest/vas_AUS-11_ERA5_historical_hres_BOM_BARRA-R2_v1_day_"
   url_suffix <- ".nc"
   
   # Download U wind data
@@ -280,7 +280,7 @@ download_process_wind_data <- function(
   return(uv_dat)
 }
 
-# #Example usage:
+# # #Example usage:
 # sample_locations <- data.frame(
 #   Lat = c(-32.27560, -33.31052, -34.52192, -34.52192),
 #   Lon = c(152.49460, 151.48528, 150.84102, 150.84102),
@@ -300,3 +300,13 @@ download_process_wind_data <- function(
 
 ## Downloads from https://dapds00.nci.org.au/thredds/catalog/ob53/output/reanalysis/AUS-11/BOM/ERA5/historical/hres/BARRA-R2/v1/day/uas/latest/catalog.html
 ## Check this link to see the latest date available then might need to edit the code
+
+
+
+
+#### Possible improvement with shift to terra package:
+
+# rss <- "/ncdffilename.nc"##  having 60 layers (it's a raster with one single variable for 60 years), the variable name is "cdd"
+# names(rss) <- "cdd" ## not necessary
+# r1 <- terra::rast(rss,subds = "cdd") ## select the variable name
+# r <- r1[[1]] ## give me the first layer
